@@ -40,8 +40,6 @@ public class Main {
                 forest.readTreesFromCSV(csvFile);
             }
 
-            //Read trees from CSV file and populate the forest
-            //forest.readTreesFromCSV(csvFile);
             //Store the forest in hashmap
             forests.put(forestName, forest);
         }// End of for loop
@@ -53,7 +51,6 @@ public class Main {
 
             //User input loop
             while (true){
-                //Menu options
                 System.out.print("\n(P)rint, (A)dd, (C)ut, (G)row, (R)eap, (S)ave, (L)oad, (N)ext, e(X)it: ");
                 String choice = keyboard.nextLine().toUpperCase();
 
@@ -117,18 +114,6 @@ public class Main {
                         }
                         break;
                     case "N":
-//                        String currentForestName = currentForest.getForestName();
-//                        String nextForestName = getNextForestName(currentForestName, forests.keySet());
-//
-//                        if (nextForestName != null) {
-//                            currentForest = forests.get(nextForestName);
-//                            System.out.println("Moving to the next forest");
-//                            System.out.println("Initializing from " + nextForestName);
-//                        } else {
-//                            System.out.println("No more forests to process.");
-//                        }
-//                        break;
-
                         String currentForestName = currentForest.getForestName();
                         String nextForestName = getNextForestName(currentForestName, args);
 
@@ -160,8 +145,6 @@ public class Main {
                             System.out.println("No more forests to process.");
                         }
                         break;
-
-
                     case "X":
                         System.out.println("Exiting the Forestry Simulation");
                         System.exit(0);
@@ -182,28 +165,13 @@ public class Main {
      * @param forestNames The set of all forest names.
      * @return The name of the next forest, or null if there are no more forests.
      */
-//    private static String getNextForestName(String currentForestName, Set<String> forestNames){
-//        //Convert the set of name to array
-//        String[] forestNameArray = forestNames.toArray(new String[0]);
-//
-//        //Find the index of the current forest name
-//        int currentIndex = Arrays.asList(forestNameArray).indexOf(currentForestName);
-//
-//        //Check for forest name and it's not the last forest
-//        if(currentIndex != -1 && currentIndex < forestNameArray.length - 1){
-//            //Return next forest name
-//            return forestNameArray[currentIndex + 1];
-//        }
-//        return null;
-//    }//End of getNextForestName
-
     private static String getNextForestName(String currentForestName, String[] forestNames) {
         // Find the index of the current forest name
         int currentIndex = Arrays.asList(forestNames).indexOf(currentForestName);
 
-        // Check if the current forest is not the last forest
+        // Checks if the current forest is not the last forest
         if (currentIndex != -1) {
-            // Return the next forest name (wrap around to the beginning if necessary)
+            // Return the next forest name (wrap around if necessary)
             return forestNames[(currentIndex + 1) % forestNames.length];
         }
         return null;

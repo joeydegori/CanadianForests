@@ -190,9 +190,6 @@ public class Forest implements Serializable {
         }//End of for loop
 
         //Replace reaped tree with new random trees at same index
-        //REPLACE
-        //!!!!!!!!!!!
-        //!!!!!!!!!!!!!!!
         for (int i = 0; i < reapedIndexes.size(); i++){
             int reapedIndex = reapedIndexes.get(i);
             //Remove old tree and add the new one at the same index
@@ -230,11 +227,13 @@ public class Forest implements Serializable {
     public void saveForest(){
         String fileName = forestName + ".db";
         try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(fileName))) {
+            // Write the current Forest object to the file
             outputStream.writeObject(this);
         } catch (IOException e){
+            // Handle any IOException
             System.out.println("Error saving forest to file: " + e.getMessage());
         }
-    }
+    }//End of saveForest
 
     /**
      * Loads a forest from a file.
@@ -248,6 +247,7 @@ public class Forest implements Serializable {
 
         String fileName = forestName + ".db";
         try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(fileName))) {
+            // Read the Forest object from the file
             Forest forest = (Forest) inputStream.readObject();
             System.out.println("Forest loaded successfully from " + fileName);
             return forest;
@@ -255,8 +255,8 @@ public class Forest implements Serializable {
             System.out.println("Error loading forest from file: " + e.getMessage());
             return null;
         }
-    }
-}
+    }//End of loadForest
+}//End of Forest class
 
 
 
